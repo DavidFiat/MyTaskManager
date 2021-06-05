@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task Manager</title>
+        <link rel="stylesheet" href="css/index.css"/>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        
+    <div id="allContainer">
+        <div id="newTask">
+            <h3 id="addTaskTitle">Add a new task</h3>
+            <input id="name" class="inputdata" type="text" placeholder="Task Name"><br>
+            <input id="description" class="inputdata" type="text" placeholder="Description"><br>
+            <button id="newTaskButton">Add Task</button>
+
+        </div>
+
+        <div id="TO_DO">
+            <div id="ToDoContainer" class=task></div>
+
+        </div> 
+
+        <div id="DOING">
+            <div id="DoingContainer" class=task></div>
+
+        </div>
+
+        <div id="DONE">
+            <div id="DoneContainer" class=task></div>
+        </div>          
+    </div>
+    </body>
+</html>
+<script src="js/Task.js"></script>
+<script src="js/taskView.js"></script>
+<script src="js/index.js"></script>

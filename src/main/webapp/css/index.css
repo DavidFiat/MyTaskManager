@@ -1,0 +1,96 @@
+#allContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+#newTask{
+    background:#BDEDFA;
+    display: flex; 
+    flex-direction: column;
+    width: 25%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border: lightblue 10px solid;
+    margin: 5px;
+}
+
+#TO_DO{
+    background:#BDEDFA;
+    display: flex; 
+    flex-direction: column;
+    width: 25%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border: lightblue 10px solid;
+    margin: 5px;
+}
+#DOING{
+    background:#BDEDFA;
+    display: flex; 
+    flex-direction: column;
+    width: 25%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border: lightblue 10px solid;
+    margin: 5px;
+
+}
+#DONE{
+    background:#BDEDFA;
+    display: flex; 
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border: lightblue 10px solid;
+    margin: 5px;
+
+}
+
+.task{
+    background: #EEEEEE;
+    padding: 20px;
+    width: 95%;
+    height: 200%;
+    position: relative;
+    margin: 10px center;
+    border-radius: 20px;
+}
+
+.delBtn{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+.name{
+    font-weight: bolder;
+    color: blueviolet;
+    cursor: pointer;
+
+
+
+}
+.inputData{
+    width: 80%;
+}
+
+#registroContainer *{
+    margin:5px 0px 5px 0px
+}
+
+#logo{
+    width: 180px;
+}
+
+#RegistroTitle{
+    color: blueviolet;
+}
