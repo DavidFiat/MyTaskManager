@@ -95,8 +95,9 @@ const getAllDoneTasks = ()=>{
             for(let i=0;i<response.length;i++){
                 let taskP = response[i];
                 let view = new  TaskView(taskP);
+                
                 view.onDeleteFinished = ()=>{
-                   DoneContainer.removeChild(document.getElementById('task'+taskP.id))
+                    DoneContainer.removeChild(document.getElementById('task'+taskP.id))
                 }
                 DoneContainer.appendChild(view.render());
             }

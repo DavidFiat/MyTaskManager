@@ -3,6 +3,7 @@ class TaskView{
     constructor(task){
         this.task = task;
         this.onDeleteFinished= null;
+    
     }
 
     deleteTask = ()=>{
@@ -18,6 +19,7 @@ class TaskView{
         xhr.send();
     }
     render=()=>{
+        
         let component = document.createElement('div');
         component.id = 'task'+this.task.id;
         component.className = 'taskComponent';
@@ -26,12 +28,35 @@ class TaskView{
         let date = document.createElement('p');
         let delBtn = document.createElement('button');
         delBtn.className = 'delBtn';
+        name.className = "element";
+        description.className = "element";
+        date.className = "element";
 
         name.innerHTML =  this.task.name;
+        name.innerHTML.toLowerCase;
+        name.innerHTML.bold;
         description.innerHTML =  this.task.description;
         date.innerHTML =  this.task.date;
 
+        let status=this.task.status;
+        if(status=="TO DO"){
+            let upBtn = document.createElement('button');
+            upBtn.className = 'upButton';
+            component.appendChild(upBtn);
 
+        }else if(status=="DOING"){
+            let upBtn = document.createElement('button');
+            upBtn.className = 'upButton';
+            component.appendChild(upBtn);
+            let downBtn = document.createElement('button');
+            upBtn.className = 'downButton';
+            component.appendChild(downBtn);
+
+        }else{
+            let downBtn = document.createElement('button');
+            upBtn.className = 'downButton';
+            component.appendChild(downBtn);
+        }
         component.appendChild(name);
         component.appendChild(description);
         component.appendChild(date);
