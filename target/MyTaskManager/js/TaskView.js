@@ -16,7 +16,7 @@ class TaskView{
                 }
             }
         });
-        xhr.open('DELETE','http://localhost:8081/MyTaskManager_war/api/tasks/delete/'+this.task.id);
+        xhr.open('DELETE','/api/tasks/delete/'+this.task.id);
         xhr.send();
     }
 
@@ -37,7 +37,7 @@ class TaskView{
                 }
             }
         });
-    xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+    xhr.open('PUT','/api/tasks/edit');
     xhr.setRequestHeader('Content-Type','application/json');
     xhr.send(JSON.stringify(taskObj));
     }
@@ -58,7 +58,7 @@ class TaskView{
                 }
             }
         });
-    xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+    xhr.open('PUT','/api/tasks/edit');
     xhr.setRequestHeader('Content-Type','application/json');
     xhr.send(JSON.stringify(taskObj));
     }  
@@ -81,7 +81,7 @@ class TaskView{
                     }
                 }
             });
-        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+        xhr.open('PUT','/api/tasks/edit');
         xhr.setRequestHeader('Content-Type','application/json');
         xhr.send(JSON.stringify(taskObj));
     }
@@ -104,7 +104,7 @@ class TaskView{
                     }
                 }
             });
-        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+        xhr.open('PUT','/api/tasks/edit');
         xhr.setRequestHeader('Content-Type','application/json');
         xhr.send(JSON.stringify(taskObj));
     }

@@ -26,7 +26,7 @@ const add=()=>{
 
         }
     });
-    xhr.open('POST','http://localhost:8081/MyTaskManager_war/api/tasks/create');
+    xhr.open('POST','/api/tasks/create');
     xhr.setRequestHeader('Content-Type','application/json');
     xhr.send(JSON.stringify(taskObj));
 };
@@ -52,7 +52,7 @@ const getAllToDoTasks = ()=>{
 
         }
     });
-    xhr.open('GET','http://localhost:8081/MyTaskManager_war/api/tasks/toDoTasks');
+    xhr.open('GET','/api/tasks/toDoTasks');
     xhr.send();
 };
 
@@ -80,7 +80,7 @@ const getAllDoingTasks = ()=>{
 
         }
     });
-    xhr.open('GET','http://localhost:8081/MyTaskManager_war/api/tasks/doingTasks');
+    xhr.open('GET','/api/tasks/doingTasks');
     xhr.send();
 };
 
@@ -104,7 +104,7 @@ const getAllDoneTasks = ()=>{
 
         }
     });
-    xhr.open('GET','http://localhost:8081/MyTaskManager_war/api/tasks/doneTasks');
+    xhr.open('GET','/api/tasks/doneTasks');
     xhr.send();
 };
 
