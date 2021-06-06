@@ -35,6 +35,7 @@ const getAllTasks = ()=>{
     xhr.addEventListener('readystatechange',()=>{
         if(xhr.readyState==4){
             let json = xhr.responseText;
+            console.log(json);
             let response = JSON.parse(json); 
             console.log(response);
             ToDoContainer.innerHTML = '';

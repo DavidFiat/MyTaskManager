@@ -39,12 +39,68 @@ public class TaskServices {
     }
 
     @GET
-    @Path("all")
-    public Response getAll(){
+    @Path("toDoTasks")
+    public Response getToDoTasks(){
         try {
             TaskProvider provider = new TaskProvider();
             ArrayList<Task> tasks = provider.getAllTasks();
-            return Response.ok(tasks)
+            ArrayList<Task> toDo = new ArrayList<Task>();
+            for(int i=0;i<tasks.size();i++){
+                if(tasks.get(i).equals(Task.TO_DO)){
+                    toDo.add(tasks.get(i));
+                }
+            }
+            return Response.ok(toDo)
+                    .header("Content-Type","application/json")
+                    .build();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return Response
+                    .status(500)
+                    .entity(new String("Operación Fallida"))
+                    .header("Content-Type","application/json")
+                    .build();
+        }
+    }
+
+    @GET
+    @Path("doingTasks")
+    public Response getDoingTasks(){
+        try {
+            TaskProvider provider = new TaskProvider();
+            ArrayList<Task> tasks = provider.getAllTasks();
+            ArrayList<Task> doing = new ArrayList<Task>();
+            for(int i=0;i<tasks.size();i++){
+                if(tasks.get(i).equals(Task.DOING)){
+                    doing.add(tasks.get(i));
+                }
+            }
+            return Response.ok(doing)
+                    .header("Content-Type","application/json")
+                    .build();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return Response
+                    .status(500)
+                    .entity(new String("Operación Fallida"))
+                    .header("Content-Type","application/json")
+                    .build();
+        }
+    }
+
+    @GET
+    @Path("doneTasks")
+    public Response getDoneTasks(){
+        try {
+            TaskProvider provider = new TaskProvider();
+            ArrayList<Task> tasks = provider.getAllTasks();
+            ArrayList<Task> done = new ArrayList<Task>();
+            for(int i=0;i<tasks.size();i++){
+                if(tasks.get(i).equals(Task.TO_DO)){
+                    done.add(tasks.get(i));
+                }
+            }
+            return Response.ok(done)
                     .header("Content-Type","application/json")
                     .build();
         } catch (SQLException exception) {

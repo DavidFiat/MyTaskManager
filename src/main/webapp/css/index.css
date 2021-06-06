@@ -54,7 +54,7 @@
 
 }
 
-.task{
+.taskContainer{
     background: #EEEEEE;
     padding: 20px;
     width: 95%;
@@ -75,8 +75,6 @@
     font-weight: bolder;
     color: blueviolet;
     cursor: pointer;
-
-
 
 }
 .inputData{

@@ -1,11 +1,8 @@
 class TaskView{
 
     constructor(task){
-        this.name = name;
-        this.status = status;
-        this.date = date;
-        this.description = description;
-       
+        this.task = task;
+        this.onDeleteFinished = null;       
     }
 
     deleteTask = ()=>{
@@ -50,8 +47,7 @@ class TaskView{
         component.appendChild(delBtn);
 
         //Comportamiento
-        name.addEventListener('click',this.goToEditor);
-        delBtn.addEventListener('click',this.deleteProfesor);
+        delBtn.addEventListener('click',this.deleteTask);
         return component;
 
 
