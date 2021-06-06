@@ -6,6 +6,8 @@ import model.Task;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class TaskProvider {
 
@@ -14,7 +16,9 @@ public class TaskProvider {
         sql = sql.replace("$STATUS",task.getStatus());
         sql = sql.replace("$NAME",task.getName());
         sql = sql.replace("$DESCRIPTION",task.getDescription());
-        sql = sql.replace("$DATE",task.getDate());
+        Calendar dat = new GregorianCalendar();
+        String date = ""+dat.get(Calendar.DAY_OF_MONTH)+"/"+dat.get(Calendar.MONTH)+"/"+dat.get(Calendar.YEAR);
+        sql = sql.replace("$DATE",date);
         DBConnection connection = new DBConnection();
         connection.connect();
         connection.commandSQL(sql);

@@ -18,14 +18,6 @@ public class Task {
     public Task(){
 
     }
-    public Task(String name, String description) {
-        this.status = TO_DO;
-        this.name = name;
-        this.description = description;
-        Calendar dat = Calendar.getInstance();
-        dat = new GregorianCalendar();
-        this.date = ""+dat.get(Calendar.DAY_OF_MONTH)+"/"+dat.get(Calendar.MONTH)+"/"+dat.get(Calendar.YEAR);
-    }
 
     public Task(int id, String status, String name, String description, String date) {
         this.id = id;

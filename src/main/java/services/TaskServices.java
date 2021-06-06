@@ -22,7 +22,7 @@ public class TaskServices {
     public Response create(Task task){
         try {
             TaskProvider provider = new TaskProvider();
-            provider.create(task);
+            provider.create(task);  
             return Response
                     .ok(new String("Operación Exitosa"))
                     .header("Content-Type","application/json")
@@ -46,7 +46,7 @@ public class TaskServices {
             ArrayList<Task> tasks = provider.getAllTasks();
             ArrayList<Task> toDo = new ArrayList<Task>();
             for(int i=0;i<tasks.size();i++){
-                if(tasks.get(i).equals(Task.TO_DO)){
+                if(tasks.get(i).getStatus().equals(Task.TO_DO)){
                     toDo.add(tasks.get(i));
                 }
             }
@@ -71,7 +71,7 @@ public class TaskServices {
             ArrayList<Task> tasks = provider.getAllTasks();
             ArrayList<Task> doing = new ArrayList<Task>();
             for(int i=0;i<tasks.size();i++){
-                if(tasks.get(i).equals(Task.DOING)){
+                if(tasks.get(i).getStatus().equals(Task.DOING)){
                     doing.add(tasks.get(i));
                 }
             }
@@ -96,7 +96,7 @@ public class TaskServices {
             ArrayList<Task> tasks = provider.getAllTasks();
             ArrayList<Task> done = new ArrayList<Task>();
             for(int i=0;i<tasks.size();i++){
-                if(tasks.get(i).equals(Task.TO_DO)){
+                if(tasks.get(i).getStatus().equals(Task.DONE)){
                     done.add(tasks.get(i));
                 }
             }
