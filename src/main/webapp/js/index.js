@@ -40,8 +40,6 @@ const getAllToDoTasks = ()=>{
         if(xhr.readyState==4){
             let json = xhr.responseText;
             let response = JSON.parse(json); 
-            console.log(json);
-            console.log(response);
             ToDoContainer.innerHTML = '';
             for(let i=0;i<response.length;i++){
                 let taskP = response[i];
@@ -65,14 +63,17 @@ const getAllDoingTasks = ()=>{
         if(xhr.readyState==4){
             let json = xhr.responseText;
             let response = JSON.parse(json); 
-            console.log(json);
-            console.log(response);
             DoingContainer.innerHTML = '';
             for(let i=0;i<response.length;i++){
                 let taskP = response[i];
                 let view = new  TaskView(taskP);
                 view.onDeleteFinished = ()=>{
                    DoingContainer.removeChild(document.getElementById('task'+taskP.id))
+                }
+                view.onUpdating = ()=>{                    
+                    getAllToDoTasks();
+                    getAllDoingTasks();
+                    getAllDoneTasks();
                 }
                 DoingContainer.appendChild(view.render());
             }
@@ -83,14 +84,13 @@ const getAllDoingTasks = ()=>{
     xhr.send();
 };
 
+
 const getAllDoneTasks = ()=>{
     let xhr = new XMLHttpRequest();
     xhr.addEventListener('readystatechange',()=>{
         if(xhr.readyState==4){
             let json = xhr.responseText;
             let response = JSON.parse(json); 
-            console.log(json);
-            console.log(response);
             DoneContainer.innerHTML = '';
             for(let i=0;i<response.length;i++){
                 let taskP = response[i];

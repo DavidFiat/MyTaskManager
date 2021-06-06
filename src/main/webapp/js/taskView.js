@@ -3,6 +3,7 @@ class TaskView{
     constructor(task){
         this.task = task;
         this.onDeleteFinished= null;
+        this.onUpdating=null;
     
     }
 
@@ -19,28 +20,93 @@ class TaskView{
         xhr.send();
     }
 
-    upTask = ()=>{
-        let xhr = new XMLHttpRequest();
-        if(this.task.status=="TO DO"){
-            this.task.status = "DOING";
-        }else if(this.task.status=="DOING"){
-            this.task.status = "DONE";
+    upTaskToDoing = ()=>{
+        let taskObj = {
+            
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"DOING"
         }
-        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit/');
-        xhr.setRequestHeader('Content-Type','application/json');
-        xhr.send(JSON.stringify(this.task));
-    }    
-    
-    downTask = ()=>{
         let xhr = new XMLHttpRequest();
-        if(this.task.status=="TO DO"){
-            this.task.status = "DOING";
-        }else if(this.task.status=="DOING"){
-            this.task.status = "DONE";
+        xhr.addEventListener('readystatechange',()=>{
+            if(xhr.readyState ==4){
+                if(this.onUpdating!=null){
+                    this.onUpdating();
+                }
+            }
+        });
+    xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.send(JSON.stringify(taskObj));
+    }
+    upTaskToDone = ()=>{
+        let taskObj = {
+            
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"DONE"
         }
-        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit/');
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange',()=>{
+            if(xhr.readyState ==4){
+                if(this.onUpdating!=null){
+                    this.onUpdating();
+                }
+            }
+        });
+    xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.send(JSON.stringify(taskObj));
+    }  
+
+    downTaskToToDo = ()=>{
+        
+        let taskObj = {
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"TO DO"
+            }
+          
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener('readystatechange',()=>{
+                if(xhr.readyState ==4){
+                    if(this.onUpdating!=null){
+                        this.onUpdating();
+                    }
+                }
+            });
+        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
         xhr.setRequestHeader('Content-Type','application/json');
-        xhr.send(JSON.stringify(this.task));
+        xhr.send(JSON.stringify(taskObj));
+    }
+
+    downTaskToDoing = ()=>{
+        
+        let taskObj = {
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"DOING"
+            }
+          
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener('readystatechange',()=>{
+                if(xhr.readyState ==4){
+                    if(this.onUpdating!=null){
+                        this.onUpdating();
+                    }
+                }
+            });
+        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify(taskObj));
     }
     render=()=>{
         
@@ -65,7 +131,7 @@ class TaskView{
             let upBtn = document.createElement('button');
             upBtn.className = 'upButton';
             component.appendChild(upBtn);
-            upBtn.addEventListener('click',this.upTask);
+            upBtn.addEventListener('click',this.upTaskToDoing);
 
 
         }else if(status=="DOING"){
@@ -75,15 +141,15 @@ class TaskView{
             let downBtn = document.createElement('button');
             downBtn.className = 'downButton';
             component.appendChild(downBtn);
-            downBtn.addEventListener('click',this.downTask);
-            upBtn.addEventListener('click',this.upTask);
+            downBtn.addEventListener('click',this.downTaskToToDo);
+            upBtn.addEventListener('click',this.upTaskToDone);
 
 
         }else{
             let downBtn = document.createElement('button');
             downBtn.className = 'downButton';
             component.appendChild(downBtn);
-            downBtn.addEventListener('click',this.downTask);
+            downBtn.addEventListener('click',this.downTaskToDoing);
 
         }
         component.appendChild(name);

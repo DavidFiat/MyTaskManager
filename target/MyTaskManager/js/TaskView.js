@@ -3,6 +3,7 @@ class TaskView{
     constructor(task){
         this.task = task;
         this.onDeleteFinished= null;
+        this.onUpdating=null;
     
     }
 
@@ -17,6 +18,95 @@ class TaskView{
         });
         xhr.open('DELETE','http://localhost:8081/MyTaskManager_war/api/tasks/delete/'+this.task.id);
         xhr.send();
+    }
+
+    upTaskToDoing = ()=>{
+        let taskObj = {
+            
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"DOING"
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange',()=>{
+            if(xhr.readyState ==4){
+                if(this.onUpdating!=null){
+                    this.onUpdating();
+                }
+            }
+        });
+    xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.send(JSON.stringify(taskObj));
+    }
+    upTaskToDone = ()=>{
+        let taskObj = {
+            
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"DONE"
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange',()=>{
+            if(xhr.readyState ==4){
+                if(this.onUpdating!=null){
+                    this.onUpdating();
+                }
+            }
+        });
+    xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.send(JSON.stringify(taskObj));
+    }  
+
+    downTaskToToDo = ()=>{
+        
+        let taskObj = {
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"TO DO"
+            }
+          
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener('readystatechange',()=>{
+                if(xhr.readyState ==4){
+                    if(this.onUpdating!=null){
+                        this.onUpdating();
+                    }
+                }
+            });
+        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify(taskObj));
+    }
+
+    downTaskToDoing = ()=>{
+        
+        let taskObj = {
+            id:this.task.id,
+            name: this.task.name,
+            description: this.task.description,
+            date: this.task.date,
+            status:"DOING"
+            }
+          
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener('readystatechange',()=>{
+                if(xhr.readyState ==4){
+                    if(this.onUpdating!=null){
+                        this.onUpdating();
+                    }
+                }
+            });
+        xhr.open('PUT','http://localhost:8081/MyTaskManager_war/api/tasks/edit');
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send(JSON.stringify(taskObj));
     }
     render=()=>{
         
@@ -33,9 +123,7 @@ class TaskView{
         date.className = "element";
 
         name.innerHTML =  this.task.name;
-        name.innerHTML.toLowerCase;
-        name.innerHTML.bold;
-        description.innerHTML =  this.task.description;
+         description.innerHTML =  this.task.description;
         date.innerHTML =  this.task.date;
 
         let status=this.task.status;
@@ -43,19 +131,26 @@ class TaskView{
             let upBtn = document.createElement('button');
             upBtn.className = 'upButton';
             component.appendChild(upBtn);
+            upBtn.addEventListener('click',this.upTaskToDoing);
+
 
         }else if(status=="DOING"){
             let upBtn = document.createElement('button');
             upBtn.className = 'upButton';
             component.appendChild(upBtn);
             let downBtn = document.createElement('button');
-            upBtn.className = 'downButton';
+            downBtn.className = 'downButton';
             component.appendChild(downBtn);
+            downBtn.addEventListener('click',this.downTaskToToDo);
+            upBtn.addEventListener('click',this.upTaskToDone);
+
 
         }else{
             let downBtn = document.createElement('button');
-            upBtn.className = 'downButton';
+            downBtn.className = 'downButton';
             component.appendChild(downBtn);
+            downBtn.addEventListener('click',this.downTaskToDoing);
+
         }
         component.appendChild(name);
         component.appendChild(description);

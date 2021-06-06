@@ -47,10 +47,9 @@ public class TaskProvider {
     }
 
     public void edit(Task task) throws SQLException {
-        String sql = "UPDATE A00359132Tasks SET name='$NAME',description='$DESCRIPTION' WHERE id=$ID";
+        String sql = "UPDATE A00359132Tasks SET status='$STATUS' WHERE id=$ID";
         sql = sql.replace("$ID", String.valueOf(task.getId()));
-        sql = sql.replace("$NAME", task.getName());
-        sql = sql.replace("$DESCRIPTION", task.getDescription());
+        sql = sql.replace("$STATUS", task.getStatus());
         DBConnection connection = new DBConnection();
         connection.connect();
         connection.commandSQL(sql);
